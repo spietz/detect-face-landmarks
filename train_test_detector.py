@@ -13,15 +13,6 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 import tensorflow.keras.backend as K
 K.set_image_data_format('channels_last')
 
-# blog post on face landmark detection:
-# https://towardsdatascience.com/face-landmark-detection-with-cnns-tensorflow-cf4d191d2f0
-
-# blog post on transfer learning:
-# https://machinelearningmastery.com/how-to-use-transfer-learning-when-developing-convolutional-neural-network-models/
-
-# face images with marked landmarks dataset from:
-# https://www.kaggle.com/drgilermo/face-images-with-marked-landmark-points/
-
 
 # PARAMETERS ###
 
