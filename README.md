@@ -26,7 +26,7 @@ python3 train_test_detector.py
 
 # TODO
 * Make it work... accuracy ~ 1e-4.
-* Create loss, accuracy summaries.
+* ~~Create loss, accuracy summaries.~~
 * Retrain entire model, the VGG16 weights may not be good for grayscale input.
 * Try other base models.
-* Store trained model for later use.
+* ~~Store trained model for later use.~~

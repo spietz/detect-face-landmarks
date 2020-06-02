@@ -1,5 +1,5 @@
-from data_loader.my_data_loader import MyDataLoader
-from models.my_model import MyModel
+from data_loader.bw_data_loader import MyDataLoader
+from models.bw_model import MyModel
 from trainers.my_trainer import MyModelTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
@@ -35,7 +35,7 @@ def main():
                              config)
 
     print('Start training the model.')
-    trainer.train()
+    #trainer.train()
 
     
     print('Plotting random samples.')
@@ -44,19 +44,19 @@ def main():
     fig1 = plt.figure(1)
     fig1.clf()
 
-    rand_idx = np.random.choice(data_loader.x_train.shape[0], size=4)
+    rand_idx = np.random.choice(data_loader.X_train.shape[0], size=4)
 
-    y_pred = model.predict(data_loader.x_train[rand_idx,:,:,:])
+    y_pred = model.model.predict(data_loader.X_train[rand_idx,:,:,:])
 
     for i, idx in enumerate(rand_idx):
 
-        img = data_loader.x_train[idx,:,:,:]
+        img = data_loader.X_train[idx,:,:,:]
 
         ax = fig1.add_subplot(2,2,i+1)
 
         lm_x_true = data_loader.y_train[idx, 0::2]
         lm_y_true = data_loader.y_train[idx, 1::2]
-        ax.imshow(np.transpose(img, axes=[1,0,2]))
+        ax.imshow(np.transpose(img, axes=[1,0,2]).squeeze())
         ax.plot(lm_x_true*config.data.IMAGE_SIZE,
                 lm_y_true*config.data.IMAGE_SIZE, 'gx')
 
@@ -72,19 +72,19 @@ def main():
     fig2 = plt.figure(2)
     fig2.clf()
 
-    rand_idx = np.random.choice(data_loader.x_test.shape[0], size=4)
+    rand_idx = np.random.choice(data_loader.X_test.shape[0], size=4)
 
-    y_pred = model.predict(data_loader.x_test[rand_idx,:,:,:])
+    y_pred = model.model.predict(data_loader.X_test[rand_idx,:,:,:])
 
     for i, idx in enumerate(rand_idx):
 
-        img = data_loader.x_test[idx,:,:,:]
+        img = data_loader.X_test[idx,:,:,:]
 
         ax = fig2.add_subplot(2,2,i+1)
 
-        lm_x_true = y_test[idx, 0::2]
-        lm_y_true = y_test[idx, 1::2]
-        ax.imshow(np.transpose(img, axes=[1,0,2]))
+        lm_x_true = data_loader.y_test[idx, 0::2]
+        lm_y_true = data_loader.y_test[idx, 1::2]
+        ax.imshow(np.transpose(img, axes=[1,0,2]).squeeze())
         ax.plot(lm_x_true*config.data.IMAGE_SIZE,
                 lm_y_true*config.data.IMAGE_SIZE, 'gx')
 

@@ -9,11 +9,12 @@
         "NUM_LANDMARKS": 30
     },
     "model":{
+        "checkpoint":"experiments/2020-06-01/vgg16_transfer/checkpoints/vgg16_transfer-20-0.00.hdf5",
         "learning_rate": 0.001,
         "optimizer": "adam"
     },
     "trainer":{
-        "num_epochs": 20,
+        "num_epochs": 1,
         "batch_size": 64,
         "verbose_training": true
     },

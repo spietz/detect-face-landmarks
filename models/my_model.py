@@ -9,7 +9,7 @@ class MyModel(BaseModel):
         super(MyModel, self).__init__(config)
         self.build_model()
 
-    def build_model(self):
+    def build_model(self, train_all=False):
 
         # we use a pre-trained model as basis for the landmark detector
         # we do not load fully connected output layers at the end
@@ -19,7 +19,7 @@ class MyModel(BaseModel):
         base_model = VGG16(input_tensor=base_input, include_top=False)
         # mark loaded layers as not trainable, note how summary changes
         for layer in base_model.layers:
-            layer.trainable = False
+            layer.trainable = train_all
             
         # additional layers, flatten->dense->output
         flat1 = Flatten()(base_model.output)
